@@ -1,30 +1,35 @@
 package com.tdd.tdd_practice;
 
-abstract class Money {
+class Money {
     protected int amount;
+    protected String currency;
 
-    static Dollar dollar(int amount) {
-        return new Dollar(amount);
-    }
-
-    static Franc franc(int amount) {
-        return new Franc(amount);
-    }
-
-    public Money(int amount) {
+    public Money(int amount, String currency) {
         this.amount = amount;
+        this.currency = currency;
     }
 
-    abstract Money times(int multiplier);
+    static Money dollar(int amount) {
+        return new Money(amount,"USD");
+    }
+    static Money franc(int amount) {
+        return new Money(amount,"CHF");
+    }
+    String currency(){
+        return currency;
+    }
+
+    Money times(int multiplier){
+        return new Money(amount*multiplier,currency);
+    }
 
     @Override
     public boolean equals(Object obj) {
         Money money = (Money) obj;
-        return amount == money.amount && getClass() == obj.getClass();
+        return amount == money.amount && currency.equals(money.currency);
     }
-
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public String toString() {
+        return amount + " " + currency;
     }
 }
