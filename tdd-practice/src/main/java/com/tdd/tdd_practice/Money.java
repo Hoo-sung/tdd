@@ -1,6 +1,6 @@
 package com.tdd.tdd_practice;
 
-class Money {
+class Money implements Expression{
     protected int amount;
     protected String currency;
 
@@ -23,6 +23,12 @@ class Money {
         return new Money(amount*multiplier,currency);
     }
 
+    Expression plus(Money added){
+        return new Sum(this, added);
+    }
+    public Money reduce(String to){
+        return this;
+    }
     @Override
     public boolean equals(Object obj) {
         Money money = (Money) obj;
