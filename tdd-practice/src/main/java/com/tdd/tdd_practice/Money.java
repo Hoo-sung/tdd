@@ -21,7 +21,7 @@ public class Money implements Expression {
         return currency;
     }
 
-    Expression times(int multiplier) {
+    public Expression times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
 
@@ -33,6 +33,7 @@ public class Money implements Expression {
         int rate = bank.rate(currency, to);
         return new Money(amount / rate, to);
     }
+
 
     @Override
     public boolean equals(Object obj) {
